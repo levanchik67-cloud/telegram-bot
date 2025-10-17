@@ -29,7 +29,7 @@ def run_web():
     app.run(host='0.0.0.0', port=5000)
 
 # ===== НАСТРОЙКИ =====
-BOT_TOKEN = os.environ.get("BOT_TOKEN", "8442410256:AAEHxB066xzt6BYos99zb7ZKnykvPyWPyv4")
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8442410256:AAH0wvZoiOpTHxAhUE3o4wZ7LQZpnbpRvCc")
 ADMIN_CHAT_ID = 5846819259
 CHANNEL_USERNAME = "@eggssssi115"
 
