@@ -1,5 +1,6 @@
-print("🤖 Telegram Bot 24/7 - Railway Version!")
+print("🤖 Telegram Bot 24/7 - Render Version!")
 
+import os
 import time
 import threading
 import logging
@@ -28,7 +29,7 @@ def run_web():
     app.run(host='0.0.0.0', port=5000)
 
 # ===== НАСТРОЙКИ =====
-BOT_TOKEN = "8442410256:AAEHxB066xzt6BYos99zb7ZKnykvPyWPyv4"
+BOT_TOKEN = os.environ.get("BOT_TOKEN", "8442410256:AAEHxB066xzt6BYos99zb7ZKnykvPyWPyv4")
 ADMIN_CHAT_ID = 5846819259
 CHANNEL_USERNAME = "@eggssssi115"
 
@@ -117,11 +118,15 @@ def main():
     web_thread.start()
     time.sleep(2)
     print("✅ Веб-сервер запущен на порту 5000")
-    print("🌐 URL для проверки: ваш-проект.railway.app")
-    print("📧 Для пингов: ваш-проект.railway.app/ping")
 
-    application = Application.builder().token(BOT_TOKEN).build()
+    # Создаем приложение с правильными настройками
+    application = (
+        Application.builder()
+        .token(BOT_TOKEN)
+        .build()
+    )
 
+    # Добавляем обработчики
     application.add_handler(CommandHandler("start", start))
     application.add_handler(MessageHandler(filters.PHOTO, handle_photo))
     application.add_handler(MessageHandler(filters.VIDEO, handle_video))
@@ -129,6 +134,8 @@ def main():
 
     print("✅ Бот готов к работе 24/7!")
     print("📱 Проверьте бота в Telegram")
+    
+    # Запускаем бота
     application.run_polling()
 
 if __name__ == '__main__':
